@@ -32,6 +32,6 @@ public class RegisterController {
     @PostMapping("/register")
     public String register2(@ModelAttribute("u") /*@Valid*/ User u, BindingResult br){
         rs.saveUser(new User(u.getName(),u.getPass()));
-        return "redirect:login";
+        return "redirect:auth";
     }
 }

@@ -1,0 +1,14 @@
+<hibernate-configuration>
+	<session-factory>
+
+    	<property name="dialect">org.hibernate.dialect.PostgreSQL81Dialect</property>
+    	<property name="connection.driver_class">org.postgresql.Driver</property>
+    	<property name="connection.url">jdbc:postgresql://localhost:5432/dz08_10</property>
+    	<property name="connection.username">postgres</property>
+    	<property name="connection.password">KooKo_099</property>
+    	<property name="hibernate.show_sql">true</property>
+    	<property name="hbm2ddl.auto">update</property> 
+
+        <mapping class="kok.spring21.models.User" />
+	</session-factory>
+</hibernate-configuration>

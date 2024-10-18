@@ -5,7 +5,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import javax.servlet.Filter;
 
-//для настройки диспетчер-сервлета java-кодом:
+//для настройки диспетчер-сервлета java-кодом(замена web.xml):
 class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 	@Override
     protected Class<?>[] getRootConfigClasses(){
@@ -13,7 +13,7 @@ class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDi
     }
 	@Override
     protected Class<?>[] getServletConfigClasses(){
-		return new Class[]{SpringConfig.class};
+		return new Class[]{WebConfig.class};
     }
 	@Override
     protected String[] getServletMappings(){

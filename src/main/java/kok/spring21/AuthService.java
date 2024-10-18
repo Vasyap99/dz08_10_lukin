@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import kok.spring21.models.User;
 
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class AuthService {
     @Autowired
     UserRepository ur;
-    @Transactional
+    //@Transactional
     public boolean authUser(User u){   System.out.println(">>su-B");
         Optional<User> o=ur.findByName(u.getName());
         if(o.isPresent()){

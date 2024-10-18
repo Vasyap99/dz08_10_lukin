@@ -10,7 +10,7 @@ create table public.person(
 create sequence public.person_id_seq;
 
 create table public.siteuser(
-     id int primary key,
+     id int primary key generated always as identity,
      name varchar,
      pass varchar,
      role varchar

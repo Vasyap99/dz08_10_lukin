@@ -18,30 +18,21 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 
 import org.springframework.context.annotation.*;
-import org.springframework.transaction.annotation.*;
+
 import org.springframework.core.env.Environment;
 
-import org.springframework.orm.hibernate5.*;
-import org.springframework.transaction.*;
-import org.springframework.jdbc.*;
-
-import org.springframework.jdbc.datasource.*;
-
-import javax.sql.DataSource;
-
-import java.util.Properties;
 
 //настройка template engine для сервлета:
 @Configuration
 @ComponentScan("kok.spring21")           //skanirovanie proishodit takzhe vo vlozhennyh papkah rekursivno
 @EnableWebMvc
-public class SpringConfig implements WebMvcConfigurer{
+public class WebConfig implements WebMvcConfigurer{
 
 	private final Environment env;
 	private final ApplicationContext ac;
 	
 	@Autowired
-	public SpringConfig(ApplicationContext c,Environment env){ac=c;this.env=env;}
+	public WebConfig(ApplicationContext c,Environment env){ac=c;this.env=env;}
 
 	@Bean
 	public SpringResourceTemplateResolver templateResolver(){

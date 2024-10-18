@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 import kok.spring21.models.User;
 
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
 public class RegisterService {
     @Autowired
     UserRepository ur;
-    @Transactional(rollbackFor = Exception.class)
+    //@Transactional(rollbackFor = Exception.class)
     public void saveUser(User u){   System.out.println(">>su-B");
         if(!ur.findByName(u.getName()).isPresent()){
 				    System.out.println(">>su-1");
