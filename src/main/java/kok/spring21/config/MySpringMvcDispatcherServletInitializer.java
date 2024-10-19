@@ -5,6 +5,8 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import javax.servlet.Filter;
 
+import kok.spring21.myFilter;
+
 //для настройки диспетчер-сервлета java-кодом(замена web.xml):
 class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 	@Override
@@ -22,6 +24,6 @@ class MySpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDi
 
 	@Override
     protected Filter[] getServletFilters(){
-		return new Filter[] {new HiddenHttpMethodFilter()};
+		return new Filter[] {new HiddenHttpMethodFilter(),new myFilter()};
     }
 }

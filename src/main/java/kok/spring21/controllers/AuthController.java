@@ -16,6 +16,9 @@ import java.util.Optional;
 
 import kok.spring21.models.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class AuthController {
@@ -30,8 +33,26 @@ public class AuthController {
         return "auth";
     }
     @PostMapping("/auth")
-    public String auth2(@ModelAttribute("u") User u){
-        if(as.authUser(new User(u.getName(),u.getPass())) )    return "redirect:hello";
+    public String auth2(@ModelAttribute("u") User u,HttpServletRequest request){
+        if(as.authUser(new User(u.getName(),u.getPass())) ) {
+            //
+            HttpSession session = request.getSession();
+            // Сохраняем данные в сессии
+            session.setAttribute("tkn", "111");
+            //
+
+            return "redirect:hello";
+        }
         else return "redirect:auth";
+    }
+
+    @GetMapping("/auth/logout")
+    public String logout(HttpServletRequest request){
+        //
+        HttpSession session = request.getSession();
+        // Сохраняем данные в сессии
+        session.removeAttribute("tkn");
+        //
+        return "auth";
     }
 }
