@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 
 import org.springframework.context.annotation.*;
-import org.springframework.transaction.annotation.*;
+//import org.springframework.transaction.annotation.*;
 import org.springframework.core.env.Environment;
 
 import org.springframework.transaction.*;
@@ -35,7 +35,6 @@ import org.hibernate.*;
 //настройка Hibernate
 @Configuration
 @ComponentScan("kok.spring21")           //skanirovanie proishodit takzhe vo vlozhennyh papkah rekursivno
-@EnableTransactionManagement
 public class PersistenceConfig{
 
 	private final Environment env;
