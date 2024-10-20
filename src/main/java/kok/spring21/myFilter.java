@@ -3,8 +3,7 @@ package kok.spring21;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Component;
-//import org.springframework.core.annotation.Order;
+//import org.springframework.stereotype.Component;
 
 import javax.servlet.http.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,15 +12,24 @@ import javax.servlet.*;
 
 import org.springframework.web.server.WebFilter;
 
-@Component
-//@Order(2)
+import java.util.Set;
+import java.util.HashSet;
+
+
 public class myFilter implements Filter {
+
+    public static Set<String> tkns1=new HashSet<>();
+
 
     @Override
     public void init(javax.servlet.FilterConfig fc){}
 
     @Override
     public void destroy(){}
+
+    private void go_to_login(ServletRequest request,ServletResponse response) throws ServletException,java.io.IOException{
+        request.getRequestDispatcher("/auth").forward(request, response);
+    }
 
     @Override
     public void doFilter(
@@ -43,14 +51,24 @@ public class myFilter implements Filter {
                 try{ 
                     String tkn=(String)session.getAttribute("tkn");
                     if(tkn==null)
-                        request.getRequestDispatcher("/auth").forward(request, response); 
+                        go_to_login(request,response); 
                     else{
-                        if(tkn.equals("111")){//успешная авторизация (выдаем страницу)                        
+                        System.out.println(">>>got tkn="+tkn+"<<");
+                        System.out.println((HashSet)tkns1);
+                        if(tkns1.contains(tkn)){//успешная авторизация (выдаем страницу) 
+                            System.out.println(">>>FLT-3");                       
                             chain.doFilter(request, response);
-                        }else request.getRequestDispatcher("/auth").forward(request, response);   
+                        }else{
+                            try{
+                                session.removeAttribute("tkn");
+                            }catch(Exception e){}
+                            System.out.println(">>>FLT-4");
+                            go_to_login(request,response);    
+                        }
                     }    
                 }catch(Exception e1){
-                    request.getRequestDispatcher("/auth").forward(request, response);   
+                    System.out.println(">>>FLT-E");
+                    go_to_login(request,response); 
                 }                             
             }
         }catch(Exception e){
