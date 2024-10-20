@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import kok.spring21.models.User;
+import kok.spring21.dto.UserDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,12 +50,12 @@ public class AuthController {
     @Autowired
     UserRepository ur;
     @GetMapping("/auth")
-    public String auth1(@ModelAttribute("u") User u){
+    public String auth1(@ModelAttribute("u") UserDto u){
         return "auth";
     }
     @PostMapping("/auth")
-    public String auth2(@ModelAttribute("u") User u,HttpServletRequest request){
-        if(as.authUser(new User(u.getName(),u.getPass())) ) {
+    public String auth2(@ModelAttribute("u") UserDto u,HttpServletRequest request){
+        if(as.authUser(u) ) {
             //
             HttpSession session = request.getSession();
             // Сохраняем данные в сессии

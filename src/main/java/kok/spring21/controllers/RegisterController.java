@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import kok.spring21.models.User;
+import kok.spring21.dto.UserDto;
 
 
 @Controller
@@ -26,12 +27,12 @@ public class RegisterController {
     @Autowired
     UserRepository ur;
     @GetMapping("/register")
-    public String register1(@ModelAttribute("u") User u){
+    public String register1(@ModelAttribute("u") UserDto u){
         return "register";
     }
     @PostMapping("/register")
-    public String register2(@ModelAttribute("u") /*@Valid*/ User u, BindingResult br){
-        rs.saveUser(new User(u.getName(),u.getPass()));
+    public String register2(@ModelAttribute("u") UserDto u){
+        rs.saveUser(u);
         return "redirect:auth";
     }
 }
