@@ -81,6 +81,6 @@ public class AuthController {
         }catch(Exception e){}
         session.removeAttribute("tkn");
         //
-        return "auth";
+        return "redirect:/";
     }
 }
