@@ -28,7 +28,8 @@ public class myFilter implements Filter {
     public void destroy(){}
 
     private void go_to_login(ServletRequest request,ServletResponse response) throws ServletException,java.io.IOException{
-        request.getRequestDispatcher("/auth").forward(request, response);
+        //request.getRequestDispatcher("/auth").forward(request, response);
+        ((HttpServletResponse)response).sendRedirect("auth");
     }
 
     @Override
