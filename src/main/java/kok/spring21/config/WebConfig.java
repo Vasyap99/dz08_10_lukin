@@ -40,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer{
 		tr.setApplicationContext(ac);
 		tr.setPrefix("WEB-INF/views/");
 		tr.setSuffix(".html");
+                tr.setCharacterEncoding("UTF-8");
 		return tr;
 	}	
 
@@ -54,6 +55,9 @@ public class WebConfig implements WebMvcConfigurer{
 	public void configureViewResolvers(ViewResolverRegistry r){
 		ThymeleafViewResolver vr=new ThymeleafViewResolver();
 		vr.setTemplateEngine(templateEngine());
+                vr.setCharacterEncoding("UTF-8"); 
+                vr.setForceContentType(true); // <- this was added
+                vr.setContentType("text/html; charset=UTF-8"); // <- this was added
 		r.viewResolver(vr);
 	}
 
